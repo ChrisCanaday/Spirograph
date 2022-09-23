@@ -3,3 +3,4 @@ tar -xvf 2017-11-28-Jgraph.tar
 cd jgraph
 make
 cd ..
+rm 2017-11-28-Jgraph.tar
