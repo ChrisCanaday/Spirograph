@@ -1,7 +1,10 @@
 #include <cstdio>
 #include <iostream>
+#include <cmath>
+
+#include "../include/main.h"
 
 int main(int argc, char **argv){
-    printf("Hello World\n");
+    Spirograph graph;
     return 0;
 }
