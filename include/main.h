@@ -10,5 +10,14 @@ struct Spirograph{
     double y;
 };
 
+void setDefaults(Spirograph &s){
+    s.theta = 0;
+    s.c_i_dist = 0;
+    s.x = 0;
+    s.y = 0;
+    s.r_i = 0;
+    s.r_o = 0;
+}
+
 
 #endif

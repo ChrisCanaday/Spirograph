@@ -6,5 +6,8 @@
 
 int main(int argc, char **argv){
     Spirograph graph;
+
+    setDefaults(graph);
+    
     return 0;
 }
