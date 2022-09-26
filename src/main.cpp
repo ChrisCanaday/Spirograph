@@ -27,8 +27,8 @@ void Spirograph::getInput(int arc, char **argv){
     string s;
     int gcd;
     printf("newgraph\n");
-    printf("xaxis nodraw\n");
-    printf("yaxis nodraw\n");
+    printf("xaxis min %d max %d nodraw\n",-2*r_o,2*r_o);
+    printf("yaxis min %d max %d nodraw\n",-2*r_o,2*r_o);
 
     /*while(getline(cin,s)){
         stringstream ss(s);
@@ -69,13 +69,16 @@ void Spirograph::draw(){
     // https://sciencedemos.org.uk/spirograph.php
 
     tmp = (double) (r_o - r_i)/ (double)r_i;
+    //printf("tmp %lf",tmp);
     diff = (double) r_o - (double) r_i;
-    //printf("%lf\n",rho);
+    //printf("diff %lf\n",diff);
+    //printf("K:%lf\n",k);
+    //printf("L:%lf\n",l);
     while(t <= maxt){
         x = diff * cos(t) + rho * cos(tmp*t);
         y = diff * sin(t) - rho * sin(tmp*t);
 
-        printf("%.3lf %.3lf\n",x,y);
+        printf("%.5lf %.5lf\n",x,y);
         t += it;
     }
 }
