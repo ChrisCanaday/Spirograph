@@ -3,6 +3,7 @@
 #include <sstream>
 #include <cmath>
 #include <algorithm>
+#include <numeric>
 
 #include "../include/main.h"
 using namespace std;
@@ -25,46 +26,66 @@ int main(int argc, char **argv){
 void Spirograph::getInput(int arc, char **argv){
     string s;
     int gcd;
+    printf("newgraph\n");
+    printf("xaxis nodraw\n");
+    printf("yaxis nodraw\n");
 
-    while(getline(cin,s)){
+    /*while(getline(cin,s)){
         stringstream ss(s);
 
-        ss >> colors.r >> colors.g >> colors.b >> outerteethcount >> innerteethcount >> rho;
+        ss >> colors.r >> colors.g >> colors.b >> r_o >> r_i >> rho;
         //gcd();
-        gcd = __gcd(outerteethcount,innerteethcount);
+        *//*gcd = __gcd(outerteethcount,innerteethcount);
         r_o = outerteethcount / gcd;
-        r_i = outerteethcount / gcd;
+        r_i = outerteethcount / gcd;*//*
+        l = rho / r_i;
+        k = r_i / r_o;
         createSpiroGraph();
-    }
+    }*/
+    setDefaults();
+    createSpiroGraph();
 }
 
 void Spirograph::draw(){
-    int i,n;
-    double t,it,step;
+    int i,n,lcm;
+    double t,it,step,maxt,tmp,diff;
     
-    n = 2000 * r_o;
+    // find the least common multiple
+    lcm = r_o*r_i / __gcd(r_o,r_i);
 
-    //n = 2000;
-    it = r_o * 3.1459 * 2 / n;
+    // number of loops requred to complete spriograph
+    // http://mathadinfinitum.weebly.com/the-math-of-spirographs.html
+    n = lcm / r_o;
+    
+    // over estimate pi so that it for sure completes
+    maxt = n * 2 * 3.2;
+
+    it = .01;
 
     printf("newline color %d %d %d\n",colors.r,colors.g,colors.b);
     printf("pts\n");
 
     t = 0.0;
-    for(i = 0; i < n; i++){
-        x = r_o*((1-k)*cos(t) + l*k*cos(((1-k)/k) * t));
-        y = r_o*((1-k)*sin(t) - l*k*sin(((1-k)/k) * t));
+    // https://sciencedemos.org.uk/spirograph.php
+
+    tmp = (double) (r_o - r_i)/ (double)r_i;
+    diff = (double) r_o - (double) r_i;
+    //printf("%lf\n",rho);
+    while(t <= maxt){
+        x = diff * cos(t) + rho * cos(tmp*t);
+        y = diff * sin(t) - rho * sin(tmp*t);
+
         printf("%.3lf %.3lf\n",x,y);
         t += it;
     }
 }
 
 void Spirograph::createSpiroGraph(){
-    printf("newgraph\n");
+    //printf("newgraph\n");
     //printf("xaxis min %lf max %lf nodraw\n", -1*(r_o+1),r_o+1);
     //printf("yaxis min %lf max %lf nodraw\n", -1*(r_o+1),r_o+1);
-    printf("xaxis nodraw\n");
-    printf("yaxis nodraw\n");
+    //printf("xaxis nodraw\n");
+    //printf("yaxis nodraw\n");
 
     draw();
 }
