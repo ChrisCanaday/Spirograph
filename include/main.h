@@ -15,11 +15,7 @@ struct Spirograph{
     double x; // x position
     double y; // y position
     double rho; // distance from center of inner circle (the point)
-    double l; // rho / r_i  represents how far some point A is from the center of inner circle
-    double k; // r_i / r_o  represents size of inner circle with respect to outer circle
     color colors;
-    int outerteethcount;
-    int innerteethcount;
 
     void setDefaults();
     void getInput(int arc, char **argv);
@@ -33,13 +29,9 @@ void Spirograph::setDefaults(){
     r_i = 1;
     r_o = 2;
     rho = .9;
-    l = rho / r_i;
-    k = (double) r_i / (double) r_o;
     colors.r = 0;
     colors.g = 0;
     colors.b = 0;
-    outerteethcount = 20;
-    innerteethcount = 5;
 }
 
 
