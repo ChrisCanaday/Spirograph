@@ -13,7 +13,7 @@ void printPrompt();
 int main(int argc, char **argv){
     Spirograph graph;
 
-    graph.setDefaults();
+    //graph.setDefaults();
     graph.getInput(argc, argv);
 
     //graph.createSpiroGraph();
@@ -24,22 +24,27 @@ int main(int argc, char **argv){
 
 void Spirograph::getInput(int arc, char **argv){
     string s;
+    int R_O, R_I;
+    double p;
+    //color gcolors;
 
-    printf("newgraph\n");
+    /*printf("newgraph\n");
     printf("xaxis min %d max %d nodraw\n",-2*r_o,2*r_o);
-    printf("yaxis min %d max %d nodraw\n",-2*r_o,2*r_o);
+    printf("yaxis min %d max %d nodraw\n",-2*r_o,2*r_o);*/
 
-    /*while(getline(cin,s)){
+    while(getline(cin,s)){
         stringstream ss(s);
+        //color gcolors;
+        graph_data g;
 
-        ss >> colors.r >> colors.g >> colors.b >> r_o >> r_i >> rho;
-        createSpiroGraph();
-    }*/
-    setDefaults();
+        ss >> g.colors.r >> g.colors.g >> g.colors.b >> g.r_o >> g.r_i >> g.rho >> g.starting_theta;
+        spiro.push_back(g);
+    }
+
     createSpiroGraph();
 }
 
-void Spirograph::draw(){
+void graph_data::draw(){
     int i,n,lcm;
     double t,it,step,maxt,tmp,diff;
     
@@ -68,9 +73,11 @@ void Spirograph::draw(){
     diff = (double) r_o - (double) r_i;
 
     // print all of the points for the spirograph on stdout
+    // first cos is the position of the inside circle
+    // second cos is the position of the point inside the inside circle
     while(t <= maxt){
-        x = diff * cos(t) + rho * cos(tmp*t);
-        y = diff * sin(t) - rho * sin(tmp*t);
+        x = diff * cos(t+starting_theta) + rho * cos(tmp*t);
+        y = diff * sin(t+starting_theta) - rho * sin(tmp*t);
 
         printf("%.5lf %.5lf\n",x,y);
         t += it;
@@ -78,11 +85,20 @@ void Spirograph::draw(){
 }
 
 void Spirograph::createSpiroGraph(){
-    //printf("newgraph\n");
-    //printf("xaxis min %lf max %lf nodraw\n", -1*(r_o+1),r_o+1);
-    //printf("yaxis min %lf max %lf nodraw\n", -1*(r_o+1),r_o+1);
-    //printf("xaxis nodraw\n");
-    //printf("yaxis nodraw\n");
+    unsigned int i, maxr_o;
+    maxr_o = 0;
 
-    draw();
+    for(i = 0; i < spiro.size(); i++){
+        if(maxr_o < spiro[i].r_o){
+            maxr_o = spiro[i].r_o;
+        }
+    }
+
+    printf("newgraph\n");
+    printf("xaxis min %d max %d nodraw\n",-1*maxr_o+1,1*maxr_o+1);
+    printf("yaxis min %d max %d nodraw\n",-1*maxr_o+1,1*maxr_o+1);
+
+    for(i = 0; i < spiro.size(); i++) spiro[i].draw();
+
+    //draw();
 }

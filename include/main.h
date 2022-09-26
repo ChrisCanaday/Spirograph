@@ -1,7 +1,9 @@
 #ifndef SPIROGRAPH_INCLUDE_MAIN_H
 #define SPIROGRAPH_INCLUDE_MAIN_H
 
+#include <iostream>
 #include <string>
+#include <vector>
 
 struct color{
     int r;
@@ -9,30 +11,37 @@ struct color{
     int b;
 };
 
-struct Spirograph{
+struct graph_data{
     int r_i; // inner circle radius
     int r_o; // outer circle radius
     double x; // x position
     double y; // y position
     double rho; // distance from center of inner circle (the point)
-    color colors;
+    double starting_theta; // starting position of the circle
+    color colors; // the color values
 
-    void setDefaults();
-    void getInput(int arc, char **argv);
     void draw();
+};
+
+struct Spirograph{
+    std::vector<graph_data> spiro;
+
+    //void setDefaults();
+    void getInput(int arc, char **argv);
+    //void draw();
     void createSpiroGraph();
 };
 
-void Spirograph::setDefaults(){
+/*void Spirograph::setDefaults(){
     x = 0;
     y = 0;
-    r_i = 1;
-    r_o = 2;
-    rho = .9;
+    r_i = 30;
+    r_o = 90;
+    rho = 5;
     colors.r = 0;
     colors.g = 0;
     colors.b = 0;
-}
+}*/
 
 
 #endif
