@@ -37,7 +37,7 @@ void Spirograph::getInput(int arc, char **argv){
         //color gcolors;
         graph_data g;
 
-        ss >> g.colors.r >> g.colors.g >> g.colors.b >> g.r_o >> g.r_i >> g.rho >> g.starting_theta;
+        ss >> g.colors.r >> g.colors.g >> g.colors.b >> g.r_o >> g.r_i >> g.rho >> g.starting_theta >> g.starting_pos;
         spiro.push_back(g);
     }
 
@@ -76,8 +76,8 @@ void graph_data::draw(){
     // first cos is the position of the inside circle
     // second cos is the position of the point inside the inside circle
     while(t <= maxt){
-        x = diff * cos(t+starting_theta) + rho * cos(tmp*t);
-        y = diff * sin(t+starting_theta) - rho * sin(tmp*t);
+        x = diff * cos(t+starting_theta) + rho * cos(tmp*t+starting_pos);
+        y = diff * sin(t+starting_theta) - rho * sin(tmp*t+starting_pos);
 
         printf("%.5lf %.5lf\n",x,y);
         t += it;

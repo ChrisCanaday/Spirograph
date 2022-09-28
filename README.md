@@ -10,8 +10,9 @@ Spirograph implementation using Jgraph.
 # Usage
 
 To use Spirograph you first need to create a file to use as input to the program. 
-The file formatt is `r g b outer-radius inner-radius pen-dist starting-angle`.
-With pen-dist being the distance from the center of the inner circle to the pen and starting-angle being in radians.
+The file formatt is `r g b outer-radius inner-radius pen-dist starting-angle starting-position`.
+With pen-dist being the distance from the center of the inner circle to the pen and starting-angle being the starting theta of the inside circle in radians.
+Starting-position is the starting angle of the pen inside the inside circle.
 Each line of the file will be a different Spirograph and they will all be laid on top of each other in the order they 
 were listed in the file.
 
@@ -19,7 +20,9 @@ After making this file you should run `sh run.sh <input-file> <output-file>` to 
 It is assumed that the output file will be a jpg.
 
 If you wish to use the executable without the shell script the usage is `./Spiro < input-file > output-file`.
-The program takes input on standard in and outputs the jgraph on standard out.
+The program takes input on standard in and outputs the jgraph on standard out. To convert the jgraph code into the graph
+run `./jgraph/jgraph -P <input-file> | ps2pdf - | convert -density 300 - -quality 100 <output-file>`. With input-file being the output
+of the Spiro program.
 
 # Resources
 
