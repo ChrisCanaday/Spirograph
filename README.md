@@ -22,7 +22,7 @@ It is assumed that the output file will be a jpg.
 If you wish to use the executable without the shell script the usage is `./Spiro < input-file > output-file`.
 The program takes input on standard in and outputs the jgraph on standard out. To convert the jgraph code into the graph
 run `./jgraph/jgraph -P <input-file> | ps2pdf - | convert -density 300 - -quality 100 <output-file>`. With input-file being the output
-of the Spiro program.
+of the Spiro program and the output-file being a jpg.
 
 # Resources
 
