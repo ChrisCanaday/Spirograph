@@ -13,11 +13,7 @@ void printPrompt();
 int main(int argc, char **argv){
     Spirograph graph;
 
-    //graph.setDefaults();
     graph.getInput(argc, argv);
-
-    //graph.createSpiroGraph();
-    //graph.draw();
 
     return 0;
 }
@@ -26,21 +22,20 @@ void Spirograph::getInput(int arc, char **argv){
     string s;
     int R_O, R_I;
     double p;
-    //color gcolors;
 
-    /*printf("newgraph\n");
-    printf("xaxis min %d max %d nodraw\n",-2*r_o,2*r_o);
-    printf("yaxis min %d max %d nodraw\n",-2*r_o,2*r_o);*/
-
+    // get input
     while(getline(cin,s)){
         stringstream ss(s);
-        //color gcolors;
         graph_data g;
 
+        // read in all the parameters
         ss >> g.colors.r >> g.colors.g >> g.colors.b >> g.r_o >> g.r_i >> g.rho >> g.starting_theta >> g.starting_pos;
+
+        // add it to the list of spirographs to make
         spiro.push_back(g);
     }
 
+    // draw the spirograph
     createSpiroGraph();
 }
 
@@ -88,17 +83,18 @@ void Spirograph::createSpiroGraph(){
     unsigned int i, maxr_o;
     maxr_o = 0;
 
+    // find the biggest spirograph (Use it to designate the size of the canvas)
     for(i = 0; i < spiro.size(); i++){
         if(maxr_o < spiro[i].r_o){
             maxr_o = spiro[i].r_o;
         }
     }
 
+    // create the graph and set the axes
     printf("newgraph\n");
     printf("xaxis min %d max %d nodraw\n",-1*maxr_o+1,1*maxr_o+1);
     printf("yaxis min %d max %d nodraw\n",-1*maxr_o+1,1*maxr_o+1);
 
+    // draw all the spirographs
     for(i = 0; i < spiro.size(); i++) spiro[i].draw();
-
-    //draw();
 }

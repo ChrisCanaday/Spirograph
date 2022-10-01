@@ -6,9 +6,9 @@
 #include <vector>
 
 struct color{
-    int r;
-    int g;
-    int b;
+    int r; // red value
+    int g; // green value
+    int b; // blue value
 };
 
 struct graph_data{
@@ -27,22 +27,8 @@ struct graph_data{
 struct Spirograph{
     std::vector<graph_data> spiro;
 
-    //void setDefaults();
     void getInput(int arc, char **argv);
-    //void draw();
     void createSpiroGraph();
 };
-
-/*void Spirograph::setDefaults(){
-    x = 0;
-    y = 0;
-    r_i = 30;
-    r_o = 90;
-    rho = 5;
-    colors.r = 0;
-    colors.g = 0;
-    colors.b = 0;
-}*/
-
 
 #endif
