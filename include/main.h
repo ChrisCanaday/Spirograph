@@ -20,6 +20,7 @@ struct graph_data{
     double starting_theta; // starting position of the circle
     double starting_pos; // starting position of the point
     color colors; // the color values
+    int fill;
 
     void draw();
 };

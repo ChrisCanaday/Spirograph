@@ -29,7 +29,7 @@ void Spirograph::getInput(int arc, char **argv){
         graph_data g;
 
         // read in all the parameters
-        ss >> g.colors.r >> g.colors.g >> g.colors.b >> g.r_o >> g.r_i >> g.rho >> g.starting_theta >> g.starting_pos;
+        ss >> g.colors.r >> g.colors.g >> g.colors.b >> g.r_o >> g.r_i >> g.rho >> g.starting_theta >> g.starting_pos >> g.fill;
 
         // add it to the list of spirographs to make
         spiro.push_back(g);
@@ -57,7 +57,12 @@ void graph_data::draw(){
     it = .01;
 
     // start the line set color and add the points
-    printf("newline color %d %d %d\n",colors.r,colors.g,colors.b);
+
+    if(fill){
+        printf("newline poly pcfill %d %d %d\n",colors.r,colors.g,colors.b);
+    }else{
+        printf("newline color %d %d %d\n",colors.r,colors.g,colors.b);
+    }
     printf("pts\n");
 
     // set the start

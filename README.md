@@ -10,9 +10,15 @@ Spirograph implementation using Jgraph.
 # Usage
 
 To use Spirograph you first need to create a file to use as input to the program. 
-The file formatt is `r g b outer-radius inner-radius pen-dist starting-angle starting-position`.
-With pen-dist being the distance from the center of the inner circle to the pen and starting-angle being the starting theta of the inside circle in radians.
-Starting-position is the starting angle of the pen inside the inside circle.
+The file formatt is `r g b outer-radius inner-radius pen-dist starting-angle starting-position fill`.
+These are defined as follows:
+* rgb: color value for the spriograph
+* outer-radius: radius of outer circle
+* inner-radius: radius of the inner circle
+* pen-dist: distance of the drawing pin from the center of the inner circle
+* starting-angle: the starting position of the inner circle in radians
+* starting-position: the starting position of the pen in radians
+* fill: 1 to fill in the spriograph and 0 to just have the line
 Each line of the file will be a different Spirograph and they will all be laid on top of each other in the order they 
 were listed in the file.
 
