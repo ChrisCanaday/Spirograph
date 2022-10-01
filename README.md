@@ -19,6 +19,7 @@ These are defined as follows:
 * starting-angle: the starting position of the inner circle in radians
 * starting-position: the starting position of the pen in radians
 * fill: 1 to fill in the spriograph and 0 to just have the line
+
 Each line of the file will be a different Spirograph and they will all be laid on top of each other in the order they 
 were listed in the file.
 
