@@ -58,8 +58,8 @@ void graph_data::draw(){
 
     // start the line set color and add the points
 
-    if(fill){
-        printf("newline poly pcfill %d %d %d\n",colors.r,colors.g,colors.b);
+    if(fill == 1){
+        printf("newline poly color %d %d %d pcfill %d %d %d\n",colors.r,colors.g,colors.b,colors.r,colors.g,colors.b);
     }else{
         printf("newline color %d %d %d\n",colors.r,colors.g,colors.b);
     }
